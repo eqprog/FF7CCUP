@@ -10,10 +10,9 @@ class Evaluator():
         self.root=root
         self.tx_attributes=tx_attributes
 
-        if not tx_attributes[7]:
-            self.upPath="./gigapixel/"
-        else:
-            self.upPath="./ESRGAN/"
+        
+        self.upPath="./gigapixel/"
+        
         try:
             self.upImg = ImageTk.PhotoImage(Image.open(self.upPath+img))
         except:
@@ -43,7 +42,7 @@ class Evaluator():
         self.gname.set(str(self.tx_attributes[1]))
         self.gnamelabel=Entry(self.evalframe, textvariable=self.gname)
         self.gnamelabel.pack(side=TOP, fill=X, expand=1)
-        optionList=["New", "Ground", "Wall", "Metallic", "Object/Prop", "NPC", "Enemy", "Foliage",
+        optionList=["New", "Sign/Decal", "Ground", "Wall", "Metallic", "Object/Prop", "Skybox/BG", "NPC", "Enemy", "Foliage", "Fog, etc.",
                     "UI", "Zack - 2nd Class", "Zack - 1st Class", "Zack - Buster Sword", "Cissnei", "Tseng", "Angeal", "Genesis", "Hollander", "Lazard", "Sephiroth", "Cloud", "Tifa"]
 
         self.catoption = StringVar(self.root)
@@ -63,10 +62,10 @@ class Evaluator():
         self.hasshinra=Checkbutton(self.evalframe, text="Shinra Logo?", variable=self.hasshinravar)
         self.hasshinra.pack(side=LEFT, fill=X, expand=1)
 
-        self.useesrganvar=IntVar(self.root)
-        self.useesrganvar.set(self.tx_attributes[7])
-        self.useesrgan=Checkbutton(self.evalframe, text="Use ESRGAN?", variable=self.useesrganvar)
-        self.useesrgan.pack(side=LEFT, fill=X, expand=1)
+        self.editedvar=IntVar(self.root)
+        self.editedvar.set(self.tx_attributes[7])
+        self.edited=Checkbutton(self.evalframe, text="Edited", variable=self.editedvar)
+        self.edited.pack(side=LEFT, fill=X, expand=1)
 
         self.ignoretexturevar=IntVar(self.root)
         self.ignoretexturevar.set(self.tx_attributes[8])
@@ -75,16 +74,13 @@ class Evaluator():
         
         
     def write_record(self):
-        update_attributes = [self.gname.get(), self.catoption.get(), self.hastextvar.get(), self.hasshinravar.get(), self.useesrganvar.get(), self.ignoretexturevar.get(), self.tx_attributes[0] ]
+        update_attributes = [self.gname.get(), self.catoption.get(), self.hastextvar.get(), self.hasshinravar.get(), self.editedvar.get(), self.ignoretexturevar.get(), self.tx_attributes[0] ]
 
         return update_attributes
 
     def update_frames(self, img, tx_attributes):
         self.tx_attributes=tx_attributes
-        if not tx_attributes[7]:
-            self.upPath="./gigapixel/"
-        else:
-            self.upPath="./ESRGAN/"
+        
         try:
             self.upImg = ImageTk.PhotoImage(Image.open(self.upPath+img))
         except:
@@ -98,7 +94,7 @@ class Evaluator():
         self.catoption.set(self.tx_attributes[4])
         self.hastextvar.set(self.tx_attributes[5])
         self.hasshinravar.set(self.tx_attributes[6])
-        self.useesrganvar.set(self.tx_attributes[7])
+        self.editedvar.set(self.tx_attributes[7])
         self.ignoretexturevar.set(self.tx_attributes[8])
 
     def return_left(self):
