@@ -42,7 +42,7 @@ class Evaluator():
         self.gname.set(str(self.tx_attributes[1]))
         self.gnamelabel=Entry(self.evalframe, textvariable=self.gname)
         self.gnamelabel.pack(side=TOP, fill=X, expand=1)
-        optionList=["New", "Sign/Decal", "Ground", "Wall", "Map", "Metallic", "Object/Prop", "Skybox/BG", "NPC", "Enemy", "Foliage", "Fog, etc.",
+        optionList=["New", "Sign/Decal", "Artwork", "Ground", "Wall", "Map", "Metallic", "Object/Prop", "Skybox/BG", "NPC", "Enemy", "Foliage", "Fog, etc.",
                     "UI", "Zack - 2nd Class", "Zack - 1st Class", "Zack - Buster Sword", "Cissnei", "Tseng", "Angeal", "Genesis", "Hollander", "Lazard", "Sephiroth", "Cloud", "Tifa"]
 
         self.catoption = StringVar(self.root)
