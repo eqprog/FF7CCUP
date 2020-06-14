@@ -82,6 +82,7 @@ def addRecord(conn, file, width, height):
                     'ignore': 0
                 })
         conn.commit()
+        print(file+" added to database")
     except: print("Entry exists: "+file)
     
 
