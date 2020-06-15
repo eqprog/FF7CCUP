@@ -43,7 +43,7 @@ class Evaluator():
         self.gnamelabel=Entry(self.evalframe, textvariable=self.gname)
         self.gnamelabel.pack(side=TOP, fill=X, expand=1)
         optionList=["New", "Sign/Decal", "Artwork", "Ground", "Ground/Wall, needs rivets", "Ground/Wall, fix trans.","Wall", "Map", "Metallic", "Object/Prop", "Skybox/BG", "NPC", "Enemy", "Foliage", "Fog, etc.",
-                    "UI", "Zack - 2nd Class", "Zack - 1st Class", "Zack - Buster Sword", "Cissnei", "Tseng", "Angeal", "Genesis", "Hollander", "Lazard", "Sephiroth", "Cloud", "Tifa"]
+                    "UI", "Zack - 2nd Class", "Zack - 1st Class", "Zack - Buster Sword", "Aerith", "Cissnei", "Tseng", "Angeal", "Genesis", "Hollander", "Lazard", "Sephiroth", "Cloud", "Tifa", "Yuffie"]
 
         self.catoption = StringVar(self.root)
         self.catoption.set(self.tx_attributes[4])
@@ -54,7 +54,7 @@ class Evaluator():
 
         self.hastextvar=IntVar(self.root)
         self.hastextvar.set(self.tx_attributes[5])
-        self.hastext=Checkbutton(self.evalframe, text="Text element?", variable=self.hastextvar)
+        self.hastext=Checkbutton(self.evalframe, text="Text element/Fix 2D", variable=self.hastextvar)
         self.hastext.pack(side=LEFT, expand=1)
 
         self.hasshinravar=IntVar(self.root)
