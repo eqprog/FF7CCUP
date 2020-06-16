@@ -228,6 +228,16 @@ def organize(file):
 	else:
 		print("!!!! WARNING IMAGE NOT CATEGORIZED !!!")
 
+def generate_textures_ini(file):
+	texturesini = open("add_textures.ini", "a")
+	
+	tx_attributes = get(file)
+	path=tx_attributes[9]
+	if tx_attributes[4] !="UI" and not tx_attributes[8]:
+		texturesini.write(tx_attributes[0] + " = "+path[1:]+tx_attributes[0]+"\n")
+
+
+
 """   for image in imageList:
         my_img = ImageTk.PhotoImage(Image.open(image))
         c.execute("INSERT INTO textures VALUES (:file_hash, :filename, :width, :height, :category,
