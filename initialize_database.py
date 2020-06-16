@@ -84,7 +84,7 @@ def addRecord(conn, file, width, height):
                 })
         conn.commit()
         print(file+" added to database")
-    except: print("Entry exists: "+file)
+    except: pass
     
 
 def getNewTextures():
@@ -175,6 +175,9 @@ def getImageList():
     #conn.close()
 def convertIndex(sav_pos):
     return int(str(sav_pos[0])[1:-1])
+#def organize(attributes)
+	#attributes[0] is filename
+	#attributes[4] is category
 
 def addDefaultPath():
 	characters="./textures/characters/"
