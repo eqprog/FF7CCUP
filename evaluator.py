@@ -11,7 +11,7 @@ class Evaluator():
         self.tx_attributes=tx_attributes
 
         
-        self.upPath="./gigapixel/"
+        self.upPath=tx_attributes[9]
         
         try:
             self.upImg = ImageTk.PhotoImage(Image.open(self.upPath+img))
@@ -54,7 +54,7 @@ class Evaluator():
 
         self.hastextvar=IntVar(self.root)
         self.hastextvar.set(self.tx_attributes[5])
-        self.hastext=Checkbutton(self.evalframe, text="Text element?", variable=self.hastextvar)
+        self.hastext=Checkbutton(self.evalframe, text="2d/Text element?", variable=self.hastextvar)
         self.hastext.pack(side=LEFT, expand=1)
 
         self.hasshinravar=IntVar(self.root)
@@ -80,7 +80,8 @@ class Evaluator():
 
     def update_frames(self, img, tx_attributes):
         self.tx_attributes=tx_attributes
-        
+        self.upPath=self.tx_attributes[9]
+        print("image path is: "+self.upPath)
         try:
             self.upImg = ImageTk.PhotoImage(Image.open(self.upPath+img))
         except:

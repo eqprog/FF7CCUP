@@ -38,7 +38,11 @@ try:
 	tdb.get_save()
 except:
 	tdb.save_init(imageList[0])
-
+tdb.addDefaultPath()
+"""try:
+	tdb.addDefaultPath()
+except:
+	print("It didn't work, Ev")"""
 #saveresult=tdb.get_save()
 
 
@@ -79,25 +83,31 @@ def prev_image(event):
     global imgcnt
     tdb.updateRecord(evaluator.write_record(), imageList[imgcnt])
     tdb.save(imageList[imgcnt])
+    tdb.addDefaultPath()
+    tdb.organize(imageList[imgcnt])
     if imgcnt > 0:
         imgcnt -= 1
         tx_attributes=tdb.get(imageList[imgcnt])
         evaluator.update_frames(imageList[imgcnt], tx_attributes)
 
     print("#"+str(imgcnt)+": "+imageList[imgcnt])
+    print(tx_attributes[9])
 
     
 def next_image(event):
     global imgcnt
-    
+    tdb.updateRecord(evaluator.write_record(),imageList[imgcnt])
+    tdb.addDefaultPath()
+    tdb.organize(imageList[imgcnt])
     tdb.save(imageList[imgcnt])
     if imgcnt < len(imageList):
-        tdb.updateRecord(evaluator.write_record(),imageList[imgcnt])
+        
         imgcnt += 1
         tx_attributes=tdb.get(imageList[imgcnt])
         evaluator.update_frames(imageList[imgcnt], tx_attributes)
 
     print("#"+str(imgcnt)+": "+imageList[imgcnt])
+    print(tx_attributes[9])
     #root.update()
 
 
