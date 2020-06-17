@@ -58,7 +58,6 @@ def get(file):
         my_img = ImageTk.PhotoImage(Image.open(file))
         addRecord(file)
         attributes = [file, file, my_img.width(), my_img.height(), "New", 0,0,0,0]
-
     else:
         print(result)
         for attr in result:
@@ -84,7 +83,7 @@ def addRecord(conn, file, width, height):
                 })
         conn.commit()
         print(file+" added to database")
-    except: pass
+    except: print("Entry exists: "+file)
     
 
 def getNewTextures():
@@ -175,9 +174,6 @@ def getImageList():
     #conn.close()
 def convertIndex(sav_pos):
     return int(str(sav_pos[0])[1:-1])
-#def organize(attributes)
-	#attributes[0] is filename
-	#attributes[4] is category
 
 def addDefaultPath():
 	characters="./textures/characters/"
@@ -231,18 +227,10 @@ def organize(file):
 	else:
 		print("!!!! WARNING IMAGE NOT CATEGORIZED !!!")
 
-"""   for image in imageList:
-        my_img = ImageTk.PhotoImage(Image.open(image))
-        c.execute("INSERT INTO textures VALUES (:file_hash, :filename, :width, :height, :category,
-                  :text_element, :shinra_logo, :use_esrgan)",
-                {
-                    'filename': image[13:-4],
-                    'gname': image[13:-4],
-                    'width': my_img.width(),
-                    'height': my_img.height(),
-                    'category': "[unassigned]",
-                    'text_element': "[unknown]",
-                    'shinra_logo': "[unknown]",
-                    'use_esrgan': "[unknown]"
-                })"""
-
+def generate_textures_ini(file):
+	texturesini = open("add_textures.ini", "a")
+	
+	tx_attributes = get(file)
+	path=tx_attributes[9]
+	if tx_attributes[4] !="UI" and not tx_attributes[8]:
+		texturesini.write(tx_attributes[0] + " = "+path[1:]+tx_attributes[0]+"\n")
