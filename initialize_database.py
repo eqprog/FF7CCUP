@@ -52,7 +52,7 @@ def get(file):
     c.execute("SELECT * FROM textures WHERE filename=?", (filename,))
     result = c.fetchone()
     conn.close()
-    return result[0:10]
+    return result[0:11]
     """if not result:
         print("Adding file to DB: "+filename)
         my_img = ImageTk.PhotoImage(Image.open(file))
@@ -223,15 +223,15 @@ def organize(file):
 			shutil.move("./gigapixel/"+tx_attributes[0], tx_attributes[9]+tx_attributes[0])
 			print(tx_attributes[0]+"moved to "+tx_attributes[9])
 		except:
-			print("Couldn't move file " + tx_attributes[0])
+			shutil.move(tx_attributes[10]+tx_attributes[0], tx_attributes[9]+tx_attributes[0])
 	else:
 		print("!!!! WARNING IMAGE NOT CATEGORIZED !!!")
 
 def generate_textures_ini(file):
-	texturesini = open("add_textures.ini", "a")
-	
-	tx_attributes = get(file)
-	filehash = tx_attributes[0]
-	path=tx_attributes[9]
-	if tx_attributes[4] !="UI" and not tx_attributes[8]:
-		texturesini.write(filehash[0:24] + " = "+path[1:]+tx_attributes[0]+"\n")
+    texturesini = open("add_textures.ini", "a")
+    
+    tx_attributes = get(file)
+    filehash = tx_attributes[0]
+    path=tx_attributes[9]
+    if tx_attributes[4] !="UI" and not tx_attributes[8]:
+        texturesini.write(filehash[0:24] + " = "+path[1:]+tx_attributes[0]+"\n")

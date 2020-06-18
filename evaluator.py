@@ -43,7 +43,7 @@ class Evaluator():
         self.gnamelabel=Entry(self.evalframe, textvariable=self.gname)
         self.gnamelabel.pack(side=TOP, fill=X, expand=1)
         optionList=["New", "Sign/Decal", "Artwork", "Ground", "Ground/Wall, needs rivets", "Ground/Wall, fix trans.","Wall", "Map", "Metallic", "Object/Prop", "Skybox/BG", "NPC", "Enemy", "Foliage", "Fog, etc.",
-                    "UI", "Zack - 2nd Class", "Zack - 1st Class", "Zack - Buster Sword", "Aerith", "Cissnei", "Tseng", "Angeal", "Genesis", "Hollander", "Lazard", "Sephiroth", "Cloud", "Tifa", "Yuffie"]
+                    "UI", "Zack - 2nd Class", "Zack - 1st Class", "Zack - Buster Sword", "Aerith", "Cissnei", "Tseng", "Angeal", "Genesis", "Hollander", "Lazard", "Sephiroth", "Cloud", "Tifa", "Yuffie", "Incorrect scaling"]
 
         self.catoption = StringVar(self.root)
         self.catoption.set(self.tx_attributes[4])
@@ -72,7 +72,20 @@ class Evaluator():
         self.ignoretexture=Checkbutton(self.evalframe, text="Ignore texture", variable=self.ignoretexturevar)
         self.ignoretexture.pack(side=BOTTOM, fill=X, expand=1)
         
-        
+################################################################# RESULTS/ATTRIBUTES KEY #######################################################################
+
+#tx_attributes[0]: filename.png (hash from ppsspp)
+##tx_attributes[1]: "given name" - human readable name, to be implemented
+##tx_attributes[2:3]: width/height of original texture
+##tx_attributes[4]: image category - 'New' is default (uncategorized)
+##tx_attributes[5]: 0/1 binary, indicates if texture has text or 2d element to be fixed up
+##tx_attributes[6]: 0/1 binary, indicates if texture contains shinra logo
+##tx_attributes[7]: needs to be renamed within code. indicates if texture has be edited after upscale
+#tx_attributes[8]: indicates if upscaled texture should simply be ignored (not added to textures.ini)
+#tx_attributes[9]: directory where the texture should be after categorization/current directory
+#tx_attributes[10]: directory in which the texture resided in upon loading the evaluator for current session
+
+###############################################################################################################################################################        
     def write_record(self):
         update_attributes = [self.gname.get(), self.catoption.get(), self.hastextvar.get(), self.hasshinravar.get(), self.editedvar.get(), self.ignoretexturevar.get(), self.tx_attributes[0] ]
 
@@ -123,14 +136,3 @@ class Evaluator():
         
 
 
-        """try:
-            os.startfile(origPath)
-        except:
-            #os.startfile("404.png")
-            print("coudln't open")
-        try:
-            #os.startfile("404.png")
-            print("coudln't open")
-        except:
-            os.startfile("404.png")"""
-        
