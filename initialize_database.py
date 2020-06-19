@@ -176,56 +176,60 @@ def convertIndex(sav_pos):
     return int(str(sav_pos[0])[1:-1])
 
 def addDefaultPath():
-	characters="./textures/characters/"
-	environment="./textures/environment/"
-	conn = sqlite3.connect('textures.db')
-	c=conn.cursor()
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? OR  category = ? OR text_element = 1 OR shinra_logo = 1""", (("./textures/priority/", "Ground/Wall, fix trans.", "Ground/Wall, needs rivets")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", (("./gigapixel/", "New")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"aerith/", "Aerith")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"angeal/", "Angeal")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"cissnei/", "Cissnei")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"cloud/", "Cloud")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"enemy/", "Enemy")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"genesis/", "Genesis")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"hollander/", "Hollander")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"lazard/", "Lazard")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"npc/", "NPC")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"sephiroth/", "Sephiroth")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"tifa/", "Tifa")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"tseng/", "Tseng")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"yuffie/", "Yuffie")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"zack - 1st Class/", "Zack - 1st Class")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"zack - 2nd Class/", "Zack - 2nd Class")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"zack - Buster Sword/", "Zack Buster Sword")))
+    characters="./textures/characters/"
+    environment="./textures/environment/"
+    conn = sqlite3.connect('textures.db')
+    c=conn.cursor()
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? OR  category = ? OR text_element = 1 OR shinra_logo = 1""", (("./textures/priority/", "Ground/Wall, fix trans.", "Ground/Wall, needs rivets")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", (("./gigapixel/", "New")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"aerith/", "Aerith")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"angeal/", "Angeal")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"cissnei/", "Cissnei")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"cloud/", "Cloud")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"enemy/", "Enemy")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"genesis/", "Genesis")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"hollander/", "Hollander")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"lazard/", "Lazard")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"npc/", "NPC")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"sephiroth/", "Sephiroth")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"tifa/", "Tifa")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"tseng/", "Tseng")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"yuffie/", "Yuffie")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"zack - 1st Class/", "Zack - 1st Class")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"zack - 2nd Class/", "Zack - 2nd Class")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"zack - Buster Sword/", "Zack Buster Sword")))
 
 
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ?""", ((environment+"artwork/", "Artwork")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? OR category = ?""", ((environment+"object/", "Metallic", "Object/Prop")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ?""", ((environment+"sign/", "Sign/Decal")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ?""", ((environment+"ground/", "Ground")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ?""", ((environment+"wall/", "Wall")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ?""", ((environment+"foliage/", "Foliage")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ?""", ((environment+"skybox/", "Skybox/BG")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ?""", ((environment+"artwork/", "Artwork")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? OR category = ?""", ((environment+"object/", "Metallic", "Object/Prop")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ?""", ((environment+"sign/", "Sign/Decal")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ?""", ((environment+"ground/", "Ground")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ?""", ((environment+"wall/", "Wall")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ?""", ((environment+"foliage/", "Foliage")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ?""", ((environment+"skybox/", "Skybox/BG")))
 
 
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ?""", (("./ignore/map/", "Map")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ?""", (("./ignore/effects/", "Fog, etc.")))
-	c.execute("""UPDATE textures SET upPath = ? WHERE category = ? OR ignore = 1""", (("./ignore/", "UI")))
-	
-	conn.commit()
-	conn.close()
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ?""", (("./textures/ignore/map/", "Map")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ?""", (("./textures/ignore/effects/", "Fog, etc.")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? OR ignore = 1""", (("./textures/ignore/", "UI")))
+    c.execute("""UPDATE textures SET initPath = upPath""", )
+    conn.commit()
+    conn.close()
 
 def organize(file):
-	tx_attributes = get(file)
-	if tx_attributes[4] != "New":
-		try:
-			shutil.move("./gigapixel/"+tx_attributes[0], tx_attributes[9]+tx_attributes[0])
-			print(tx_attributes[0]+"moved to "+tx_attributes[9])
-		except:
-			shutil.move(tx_attributes[10]+tx_attributes[0], tx_attributes[9]+tx_attributes[0])
-	else:
-		print("!!!! WARNING IMAGE NOT CATEGORIZED !!!")
+    tx_attributes = get(file)
+    if tx_attributes[4] != "New" or tx_attributes[4] != "UI":
+        try:
+            shutil.move("./gigapixel/"+tx_attributes[0], tx_attributes[9]+tx_attributes[0])
+            print(tx_attributes[0]+" moved to "+tx_attributes[9])
+        except:
+            try:
+                shutil.move(tx_attributes[10]+tx_attributes[0], tx_attributes[9]+tx_attributes[0])
+                print(tx_attributes[0]+" moved to "+tx_attributes[9])
+            except:
+                print("This file is not in its correct location, maybe!")
+    else:
+        print("!!!! WARNING IMAGE NOT CATEGORIZED !!!")
 
 def generate_textures_ini(file):
     texturesini = open("add_textures.ini", "a")

@@ -11,7 +11,7 @@ class Evaluator():
         self.tx_attributes=tx_attributes
 
         
-        self.upPath="./gigapixel/"
+        self.upPath=self.tx_attributes[9]
         
         try:
             self.upImg = ImageTk.PhotoImage(Image.open(self.upPath+img))
@@ -93,6 +93,7 @@ class Evaluator():
 
     def update_frames(self, img, tx_attributes):
         self.tx_attributes=tx_attributes
+        self.upPath=tx_attributes[9]
         
         try:
             self.upImg = ImageTk.PhotoImage(Image.open(self.upPath+img))

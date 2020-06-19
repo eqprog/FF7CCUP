@@ -38,7 +38,7 @@ try:
 	tdb.get_save()
 except:
 	tdb.save_init(imageList[0])
-tdb.addDefaultPath()
+#tdb.addDefaultPath()
 """try:
 	tdb.addDefaultPath()
 except:
@@ -83,8 +83,9 @@ def prev_image(event):
     global imgcnt
     tdb.updateRecord(evaluator.write_record(), imageList[imgcnt])
     tdb.save(imageList[imgcnt])
+    tdb.organize(imageList[imgcnt])
     tdb.addDefaultPath()
-    #tdb.organize(imageList[imgcnt])
+    
     if imgcnt > 0:
         imgcnt -= 1
         tx_attributes=tdb.get(imageList[imgcnt])
@@ -98,7 +99,7 @@ def next_image(event):
     global imgcnt
     tdb.updateRecord(evaluator.write_record(),imageList[imgcnt])
     tdb.addDefaultPath()
-    #tdb.organize(imageList[imgcnt])
+    tdb.organize(imageList[imgcnt])
     tdb.save(imageList[imgcnt])
     if imgcnt < len(imageList):
         
