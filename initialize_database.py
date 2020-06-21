@@ -221,13 +221,13 @@ def organize(file):
     if tx_attributes[4] != "New" or tx_attributes[4] != "UI":
         try:
             shutil.move("./gigapixel/"+tx_attributes[0], tx_attributes[9]+tx_attributes[0])
-            print(tx_attributes[0]+" moved to "+tx_attributes[9])
+            #print(tx_attributes[0]+" moved to "+tx_attributes[9])
         except:
             try:
                 shutil.move(tx_attributes[10]+tx_attributes[0], tx_attributes[9]+tx_attributes[0])
-                print(tx_attributes[0]+" moved to "+tx_attributes[9])
+                #print(tx_attributes[0]+" moved to "+tx_attributes[9])
             except:
-                print("This file is not in its correct location, maybe!")
+                print("This file is not in its correct location, maybe! " + tx_attributes[0])
     else:
         print("!!!! WARNING IMAGE NOT CATEGORIZED !!!")
 
