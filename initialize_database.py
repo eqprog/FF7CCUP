@@ -84,7 +84,9 @@ def addRecord(conn, file, width, height):
         conn.commit()
         print(file+" added to database")
     except: print("Entry exists: "+file)
-    
+
+def addCatRecord(attributes):
+    conn=sqlite3.connect('textures.db')
 
 def getNewTextures():
     conn = sqlite3.connect('textures.db')
@@ -101,15 +103,15 @@ def getNewTextures():
     print(os.getcwd())
     conn.close()
 
-def updateRecord(attr, file):
+def updateRecord(attr, file, table):
     
     filename=file[13:]
     attributes=attr
+    sql="""UPDATE """ + table + """ SET gname = ?, category = ?, text_element = ?, shinra_logo = ?, use_esrgan = ?, ignore = ? WHERE filename = ?"""
     #print(attributes)
     conn=sqlite3.connect('textures.db')
     c=conn.cursor()
-    c.execute("""UPDATE textures SET gname = ?, category = ?, text_element = ?, shinra_logo = ?, use_esrgan = ?,
-                ignore = ? WHERE filename = ?""", attributes)
+    c.execute(sql, attributes)
     conn.commit()
     conn.close()
     
