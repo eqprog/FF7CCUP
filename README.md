@@ -1,10 +1,3 @@
-# FF7CCUP
-FF7CC Upscale Project
+<img src="https://github.com/eqprog/FF7CCUP/blob/master/logo.png?raw=true" align=center>
 
-Currently need help with modifying AI Upscaled textures.
-
-Submit edits to wip edits branch
-
-DO NOT SOURCE TEXTURES FROM THE INTERNET - ANY SUBMITTED WORK MUST BE YOUR OWN OR GIVE APPROPRIATE CITATION/CREDIT FOR SOURCES.
-
-Will update later.
+All are welcome to participate so long as any submitted artwork is your own. Do not source images from outside sources without license.
