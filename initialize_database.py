@@ -237,5 +237,5 @@ def generate_textures_ini(file):
     tx_attributes = get(file)
     filehash = tx_attributes[0]
     path=tx_attributes[9]
-    if tx_attributes[4] !="UI" and not tx_attributes[8]:
+    if tx_attributes[4] !="UI" or not tx_attributes[8]:
         texturesini.write(filehash[0:24] + " = "+path[1:]+tx_attributes[0]+"\n")
