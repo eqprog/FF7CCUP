@@ -197,7 +197,7 @@ def addDefaultPath():
     c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"yuffie/", "Yuffie")))
     c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"zack - 1st Class/", "Zack - 1st Class")))
     c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"zack - 2nd Class/", "Zack - 2nd Class")))
-    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"zack - Buster Sword/", "Zack Buster Sword")))
+    c.execute("""UPDATE textures SET upPath = ? WHERE category = ? AND text_element = 0 AND shinra_logo = 0""", ((characters+"zack - Buster Sword/", "Zack - Buster Sword")))
 
 
     c.execute("""UPDATE textures SET upPath = ? WHERE category = ?""", ((environment+"artwork/", "Artwork")))
