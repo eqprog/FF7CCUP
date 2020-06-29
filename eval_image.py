@@ -22,7 +22,7 @@ for png in glob.glob("*.png"):
 root = Tk()
 
 tdb.initialize_db()
-#tdb.getNewTextures()
+tdb.getNewTextures()
 
 root.title("FF7CCUP Evaluator")
 root.geometry("1918x1000+0+0")
@@ -82,6 +82,7 @@ evaluator.display_upscale()
 def prev_image(event):
     global imgcnt
     tdb.updateRecord(evaluator.write_record(), imageList[imgcnt])
+    tdb.addCatRecord(tdb.get(imageList[imgcnt]))
     tdb.save(imageList[imgcnt])
     tdb.addDefaultPath()
     tdb.organize(imageList[imgcnt])
@@ -97,6 +98,7 @@ def prev_image(event):
 def next_image(event):
     global imgcnt
     tdb.updateRecord(evaluator.write_record(),imageList[imgcnt])
+    tdb.addCatRecord(tdb.get(imageList[imgcnt]))
     tdb.addDefaultPath()
     tdb.organize(imageList[imgcnt])
     tdb.save(imageList[imgcnt])

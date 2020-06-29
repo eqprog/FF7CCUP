@@ -68,8 +68,7 @@ def get(file):
 def addRecord(conn, file, width, height):
     c=conn.cursor()
     try:
-        c.execute("""INSERT INTO textures VALUES (:filename, :gname, :width, :height, :category,
-                  :text, :shinra, :esrgan, :ignore)""",
+        c.execute("""INSERT INTO textures VALUES (:filename, :gname, :width, :height, :category, :text, :shinra, :esrgan, :ignore, :upPath, :initPath)""",
                 {
                     'filename': file,
                     'gname': file,
@@ -79,14 +78,52 @@ def addRecord(conn, file, width, height):
                     'text': 0,
                     'shinra': 0,
                     'esrgan': 0,
-                    'ignore': 0
+                    'ignore': 0,
+                    'upPath': "./gigapixel/",
+                    'initPath': "./gigapixel/"
                 })
         conn.commit()
         print(file+" added to database")
-    except: print("Entry exists: "+file)
+    except: pass
+    
+
+def defineCategory(attributes):
+    tx_attributes=attributes
+    if tx_attributes[9] == "./textures/priority/":
+        category="Priority"
+    elif tx_attributes[4] == "Skybox/BG":
+        category="SkyboxBG"
+    elif tx_attributes[4] == "Sign/Decal":
+        category="SignDecal"
+    elif tx_attributes[4]=="Zack - 1st Class":
+        category="Zack1stClass"
+    elif tx_attributes[4]=="Zack - 2nd Class":
+        category="Zack2ndClass"
+    elif tx_attributes[4]=="Zack - Buster Sword":
+        category="ZackBusterSword"
+    elif tx_attributes[4]=="Object/Prop" or tx_attributes[4]=="Metallic":
+        category="ObjectProp"
+    else:
+        category=tx_attributes[4]
+    return category
 
 def addCatRecord(attributes):
+    category = defineCategory(attributes)
     conn=sqlite3.connect('textures.db')
+    c=conn.cursor()
+    sql="INSERT INTO " + category + " (filename, gname, category) VALUES (:filename, :gname, :category)"
+    #print(attributes[0])
+    #print(attributes[1])
+    #print(category)
+    #print(sql)
+    try:
+        c.execute(sql, {'filename': attributes[0], 'gname': attributes[1], 'category': category}) 
+        conn.commit()
+    except:
+        print("Entry already exists in category")
+    conn.close() 
+
+
 
 def getNewTextures():
     conn = sqlite3.connect('textures.db')
@@ -103,15 +140,16 @@ def getNewTextures():
     print(os.getcwd())
     conn.close()
 
-def updateRecord(attr, file, table):
+def updateRecord(attr, file):
     
     filename=file[13:]
     attributes=attr
-    sql="""UPDATE """ + table + """ SET gname = ?, category = ?, text_element = ?, shinra_logo = ?, use_esrgan = ?, ignore = ? WHERE filename = ?"""
-    #print(attributes)
+    #addCatRecord(attributes)
+    print(attributes)
     conn=sqlite3.connect('textures.db')
     c=conn.cursor()
-    c.execute(sql, attributes)
+    c.execute("""UPDATE textures SET gname = ?, category = ?, text_element = ?, shinra_logo = ?, use_esrgan = ?,
+                ignore = ? WHERE filename = ?""", attributes)
     conn.commit()
     conn.close()
     
