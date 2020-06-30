@@ -22,7 +22,7 @@ for png in glob.glob("*.png"):
 root = Tk()
 
 tdb.initialize_db()
-tdb.getNewTextures()
+#tdb.getNewTextures()
 
 root.title("FF7CCUP Evaluator")
 root.geometry("1918x1000+0+0")
