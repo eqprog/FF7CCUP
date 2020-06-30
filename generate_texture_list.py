@@ -6,9 +6,8 @@ import numpy as np
 
 
 imageList = np.asarray(tdb.getImageList())
-imgcnt=0
-while imgcnt < 5120:
-	tdb.generate_textures_ini(imageList[imgcnt])
+for i in range(imageList.shape[0]):
+	tdb.generate_textures_ini(imageList[i])
 	#tdb.organize(imageList[imgcnt])
-	imgcnt+=1
+
 
