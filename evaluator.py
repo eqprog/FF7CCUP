@@ -6,7 +6,7 @@ import os
 class Evaluator():
     def __init__(self, root, img, tx_attributes):
 
-        self.my_img=ImageTk.PhotoImage(Image.open("./masterdumps/"+img))
+        self.my_img=ImageTk.PhotoImage(Image.open("./masterdumps/"+tx_attributes[9][11:]+img))
         self.root=root
         self.tx_attributes=tx_attributes
 
@@ -22,7 +22,8 @@ class Evaluator():
         self.rightFrame = Frame(self.root, width=1300, height=990, padx=5, pady=5)
         self.rightFrame.pack(side=LEFT, anchor=NW, expand=1)
 
-        
+
+
 
     def display_original(self):
         
@@ -99,7 +100,7 @@ class Evaluator():
             self.upImg = ImageTk.PhotoImage(Image.open(self.upPath+img))
         except:
             self.upImg = ImageTk.PhotoImage(Image.open("404.png"))
-        self.my_img=ImageTk.PhotoImage(Image.open("./masterdumps/"+img))
+        self.my_img=ImageTk.PhotoImage(Image.open("./masterdumps/"+self.upPath[11:]+img))
         self.upscaled_img['image'] = self.upImg
         self.display['text']=self.tx_attributes[0]
         self.eval_img['image']=self.my_img
