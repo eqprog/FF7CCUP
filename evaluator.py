@@ -115,7 +115,7 @@ class Evaluator():
     def return_left(self):
         return self.leftFrame
     def openImages(self):
-        origPath=(os.getcwd()+'/masterdumps/'+self.tx_attributes[0])
+        origPath=(os.getcwd()+'/masterdumps/'+self.upPath[11:]+self.tx_attributes[0])
         upscalePath=(os.getcwd()+self.upPath+self.tx_attributes[0])
         os.startfile(origPath)
         print(origPath)
