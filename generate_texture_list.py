@@ -7,7 +7,13 @@ import numpy as np
 
 imageList = np.asarray(tdb.getImageList())
 for i in range(imageList.shape[0]):
-	tdb.generate_textures_ini(imageList[i])
+	attr=tdb.get(imageList[i])
+	str=attr[9]
+	if not str.startswith('./textures/ignore/'):
+		tdb.generate_textures_ini(imageList[i])
+	else:
+		pass
+
 	#tdb.organize(imageList[imgcnt])
 
 

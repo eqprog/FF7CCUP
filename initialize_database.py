@@ -52,7 +52,7 @@ def get(file):
     c.execute("SELECT * FROM textures WHERE filename=?", (filename,))
     result = c.fetchone()
     conn.close()
-    return result[0:12]
+    return result[0:11]
     """if not result:
         print("Adding file to DB: "+filename)
         my_img = ImageTk.PhotoImage(Image.open(file))
@@ -68,7 +68,8 @@ def get(file):
 def addRecord(conn, file, width, height):
     c=conn.cursor()
     try:
-        c.execute("""INSERT INTO textures VALUES (:filename, :gname, :width, :height, :category, :text, :shinra, :esrgan, :ignore, :upPath, :initPath)""",
+        c.execute("""INSERT INTO textures VALUES (:filename, :gname, :width, :height, :category,
+                  :text, :shinra, :esrgan, :ignore, :upPath, :initPath)""",
                 {
                     'filename': file,
                     'gname': file,
@@ -80,65 +81,12 @@ def addRecord(conn, file, width, height):
                     'esrgan': 0,
                     'ignore': 0,
                     'upPath': "./gigapixel/",
-                    'initPath': "./gigapixel/"
+                    'initPath': "./gigapixel"
                 })
         conn.commit()
         print(file+" added to database")
-    except: pass
+    except: print("Entry exists: "+file)
     
-
-def defineCategory(attributes):
-    tx_attributes=attributes
-    if tx_attributes[9] == "./textures/priority/" or tx_attributes[4]=="Priority":
-        category="Priority"
-    elif tx_attributes[4] == "Skybox/BG":
-        category="SkyboxBG"
-    elif tx_attributes[4] == "Sign/Decal":
-        category="SignDecal"
-    elif tx_attributes[4]=="Zack - 1st Class":
-        category="Zack1stClass"
-    elif tx_attributes[4]=="Zack - 2nd Class":
-        category="Zack2ndClass"
-    elif tx_attributes[4]=="Zack - Buster Sword":
-        category="ZackBusterSword"
-    elif tx_attributes[4]=="Object/Prop" or tx_attributes[4]=="Metallic":
-        category="ObjectProp"
-    elif tx_attributes[4]=="Fog, etc." or tx_attributes[4]=="UI" or tx_attributes[8]==1 or tx_attributes[4]=="Ignore":
-        category="Ignore"
-    else:
-        category=tx_attributes[4]
-    return category
-
-
-
-def addCatRecord(attributes, category):
-    
-    conn=sqlite3.connect('textures.db')
-    c=conn.cursor()
-    sql="INSERT INTO " + category + " (filename, gname, category) VALUES (:filename, :gname, :category)"
-    #print(attributes[0])
-    #print(attributes[1])
-    #print(category)
-    #print(sql)
-    try:
-        c.execute(sql, {'filename': attributes[0], 'gname': attributes[1], 'category': category}) 
-        conn.commit()
-    except:
-        print("Entry already exists in category")
-        
-    conn.close() 
-
-def deleteCatRecord(attributes, category):
-    conn=sqlite3.connect('textures.db')
-    c=conn.cursor()
-    sql="DELETE From " + category + " where filename = ?"
-    try:
-        c.execute(sql, (attributes[0], ))
-        conn.commit()
-    except sqlite3.Error as error:
-        print(error)
-    conn.close()
-
 
 def getNewTextures():
     conn = sqlite3.connect('textures.db')
@@ -152,14 +100,13 @@ def getNewTextures():
         my_img = ImageTk.PhotoImage(Image.open(png))
         addRecord(conn, png, my_img.width(), my_img.height())
     os.chdir("..")
-    #print(os.getcwd())
+    print(os.getcwd())
     conn.close()
 
 def updateRecord(attr, file):
     
     filename=file[13:]
     attributes=attr
-    #addCatRecord(attributes)
     #print(attributes)
     conn=sqlite3.connect('textures.db')
     c=conn.cursor()
@@ -170,58 +117,55 @@ def updateRecord(attr, file):
     
 
 
-def save(position, category):
-    #print(os.getcwd())
+def save(position):
+    print(os.getcwd())
     filename=position
 
     conn = sqlite3.connect('textures.db')
     c = conn.cursor()
-    sql="UPDATE saved_"+category+" SET filename = ? WHERE oid = 1"
     try:
-        c.execute(sql, (filename, ))
-        #print("position saved @ "+filename)
+        c.execute("""UPDATE saved SET filename = ? WHERE oid = 1""", (filename, ))
+        print("position saved @ "+filename)
     except:
         print("couldn't save")
     conn.commit()
     conn.close()
 def save_init(position):
-    #print(os.getcwd())
+    print(os.getcwd())
     filename=position
 
     conn = sqlite3.connect('textures.db')
     c = conn.cursor()
     try:
         c.execute("""INSERT INTO saved SET filename = ? WHERE oid = 1""", (filename, ))
-        #print("position saved @ "+filename)
+        print("position saved @ "+filename)
     except:
         print("couldn't save")
     conn.commit()
     conn.close()
 
 
-def get_save(category):
-    #print(os.getcwd())
+def get_save():
+    print(os.getcwd())
     #print("GETTING SAVE NOW")
 
     conn = sqlite3.connect('textures.db')
     conn.row_factory = sqlite3.Row
     c = conn.cursor()
-    sql = "SELECT * FROM saved_"+category+" WHERE oid=1"
-    c.execute(sql)
+    c.execute("""SELECT *  FROM saved WHERE oid=1""")
     #print("PRINTING FETCHED POSITION \n")
     result = c.fetchone()
-    print("get_save result: "+result['filename'])
+    #print(result['filename'])
     conn.close()
     for item in result:
         #print("2 "+result['filename'])
         return result['filename']
-def getImageList(category):
+def getImageList():
     tx_list =  []
-    sql = "SELECT * FROM " + category
     conn=sqlite3.connect('textures.db')
     conn.row_factory = sqlite3.Row
     c=conn.cursor()
-    c.execute(sql)
+    c.execute("SELECT * FROM textures")
     results = c.fetchall()
     for result in results:
         tx_list.append(result['filename'])
@@ -233,7 +177,7 @@ def getImageList(category):
 def convertIndex(sav_pos):
     return int(str(sav_pos[0])[1:-1])
 
-def addDefaultPath(file):
+def addDefaultPath():
     characters="./textures/characters/"
     environment="./textures/environment/"
     conn = sqlite3.connect('textures.db')
@@ -270,53 +214,24 @@ def addDefaultPath(file):
     c.execute("""UPDATE textures SET upPath = ? WHERE category = ?""", (("./textures/ignore/map/", "Map")))
     c.execute("""UPDATE textures SET upPath = ? WHERE category = ?""", (("./textures/ignore/effects/", "Fog, etc.")))
     c.execute("""UPDATE textures SET upPath = ? WHERE category = ? OR ignore = 1""", (("./textures/ignore/", "UI")))
-    
-    #
-    conn.commit()
-    conn.close()
-    
-
-def updateInitPath():
-    conn=sqlite3.connect('textures.db')
-    c=conn.cursor()
     c.execute("""UPDATE textures SET initPath = upPath""", )
     conn.commit()
     conn.close()
 
 def organize(file):
-    tx_attributes = file
-    if tx_attributes[9]==tx_attributes[10]:
-        print(tx_attributes[9]+" is the same as "+ tx_attributes[10]+", no action taken")
+    tx_attributes = get(file)
+    if tx_attributes[4] != "New" or tx_attributes[4] != "UI":
+        try:
+            shutil.move("./gigapixel/"+tx_attributes[0], tx_attributes[9]+tx_attributes[0])
+            #print(tx_attributes[0]+" moved to "+tx_attributes[9])
+        except:
+            try:
+                shutil.move(tx_attributes[10]+tx_attributes[0], tx_attributes[9]+tx_attributes[0])
+                #print(tx_attributes[0]+" moved to "+tx_attributes[9])
+            except:
+                print("This file is not in its correct location, maybe! " + tx_attributes[0])
     else:
-        if tx_attributes[4] != "New" or tx_attributes[4] != "UI":
-            try:
-                shutil.move("./gigapixel/"+tx_attributes[0], tx_attributes[9]+tx_attributes[0])
-                #print("Copied upscale from gigapixel folder")
-            except:
-                print("trying to copy from current folder")
-                
-                try:
-                    shutil.move(tx_attributes[10]+tx_attributes[0], tx_attributes[9]+tx_attributes[0])
-                    
-                except sqlite3.Error as error:
-                    print("#################################################")
-                    print("could not move upscaled copy from current folder")
-                    print("#################################################")
-                    print(error)
-            try:
-                shutil.move("./masterdumps/"+tx_attributes[0], "./masterdumps/"+tx_attributes[9][11:]+tx_attributes[0])
-                #print("Copied master from masterdumps folder")
-            except:
-                try:
-                    shutil.move("./masterdumps/"+tx_attributes[10]+tx_attributes[0], "./masterdumps/"+tx_attributes[9][11:]+tx_attributes[0])
-                    #print("Copied master from current folder")
-                except:
-                    print("#################################################")
-                    print("could not move upscaled copy from current folder")
-                    print("#################################################")
-
-    #else:
-        #print("!!!! WARNING IMAGE NOT CATEGORIZED !!!")
+        print("!!!! WARNING IMAGE NOT CATEGORIZED !!!")
 
 def generate_textures_ini(file):
     texturesini = open("add_textures.ini", "a")

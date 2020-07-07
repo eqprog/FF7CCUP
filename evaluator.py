@@ -6,7 +6,7 @@ import os
 class Evaluator():
     def __init__(self, root, img, tx_attributes):
 
-        self.my_img=ImageTk.PhotoImage(Image.open("./masterdumps/"+tx_attributes[9][11:]+img))
+        self.my_img=ImageTk.PhotoImage(Image.open("./masterdumps/"+img))
         self.root=root
         self.tx_attributes=tx_attributes
 
@@ -22,8 +22,7 @@ class Evaluator():
         self.rightFrame = Frame(self.root, width=1300, height=990, padx=5, pady=5)
         self.rightFrame.pack(side=LEFT, anchor=NW, expand=1)
 
-
-
+        
 
     def display_original(self):
         
@@ -100,7 +99,7 @@ class Evaluator():
             self.upImg = ImageTk.PhotoImage(Image.open(self.upPath+img))
         except:
             self.upImg = ImageTk.PhotoImage(Image.open("404.png"))
-        self.my_img=ImageTk.PhotoImage(Image.open("./masterdumps/"+self.upPath[11:]+img))
+        self.my_img=ImageTk.PhotoImage(Image.open("./masterdumps/"+img))
         self.upscaled_img['image'] = self.upImg
         self.display['text']=self.tx_attributes[0]
         self.eval_img['image']=self.my_img
@@ -115,7 +114,7 @@ class Evaluator():
     def return_left(self):
         return self.leftFrame
     def openImages(self):
-        origPath=(os.getcwd()+'/masterdumps/'+self.upPath[11:]+self.tx_attributes[0])
+        origPath=(os.getcwd()+'/masterdumps/'+self.tx_attributes[0])
         upscalePath=(os.getcwd()+self.upPath+self.tx_attributes[0])
         os.startfile(origPath)
         print(origPath)
@@ -133,8 +132,3 @@ class Evaluator():
         self.updisplay.pack(fill=BOTH, anchor=W, expand=1)
         self.upscaled_img=Label(self.updisplay, image=self.upImg, height=990, width=1290)
         self.upscaled_img.pack(side=LEFT, fill=BOTH, expand=1)
-    
-
-        
-
-

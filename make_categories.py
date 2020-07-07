@@ -15,10 +15,10 @@ images = []
 
 #tdb.initialize_db()
 
-tdb.getNewTextures()
-imageList = np.asarray(tdb.getImageList())
+#tdb.getNewTextures()
+imageList = np.asarray(tdb.getImageList("textures"))
 
 for i in range(imageList.shape[0]):
 	tx_attributes = tdb.get(imageList[i])
-	tdb.addCatRecord(tx_attributes)
+	tdb.addCatRecord(tx_attributes, "New")
 
