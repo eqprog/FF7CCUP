@@ -10,7 +10,7 @@ import threading
 #import selectFilter as sf
 
 cat_filter = "Foliage"
-
+os.chdir("..")
 root = Tk()
 tdb.getNewTextures()
 root.title("FF7CCUP Evaluator")
@@ -42,6 +42,7 @@ def prev_image(event):
         tx_attributes=tdb.get(imageList[imgcnt])
         evaluator.update_frames(imageList[imgcnt], tx_attributes)
     tdb.save(imageList[imgcnt], cat_filter)
+    print("#"+str(imgcnt)+"/"+str(imageList.shape[0]))
     #print("#"+str(imgcnt)+": "+imageList[imgcnt])
     print("\n")
 
@@ -69,13 +70,14 @@ def next_image(event):
     #tdb.organize(imageList[imgcnt])
     
     tdb.updateInitPath()
+
     if imgcnt < len(imageList)-1:
         
         imgcnt += 1
         tx_attributes=tdb.get(imageList[imgcnt])
         evaluator.update_frames(imageList[imgcnt], tx_attributes)
     tdb.save(imageList[imgcnt], cat_filter)
-    #print("#"+str(imgcnt)+": "+imageList[imgcnt])
+    print("#"+str(imgcnt)+"/"+str(imageList.shape[0]))
     print("\n")
 
     #root.update()
@@ -147,11 +149,10 @@ def main():
     ############################### CHECK IF RECORD EXISTS, IF NOT ADD ENTRY ######################################
 
     sav_pos=np.where(imageList==tdb.get_save(cat_filter))
-    print(sav_pos[0])
-    print("\n")
+    
     imgcnt=tdb.convertIndex(sav_pos)
     tx_attributes=tdb.get(tdb.get_save(cat_filter))
-
+    print("#"+str(imgcnt)+"/"+str(imageList.shape[0]))
     ################################################# CREATE LEFT FRAME ###########################################
 
     evaluator = e.Evaluator(root, imageList[imgcnt], tx_attributes)
