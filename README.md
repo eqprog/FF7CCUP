@@ -10,5 +10,5 @@ Installation:
 
 This texture package is designed for the PPSSPP emulator using the US disc image for Final Fantasy 7: Crisis Core. For Windows, install the package into into \Users\[your user name]\Documents\PPSSPP\PSP\TEXTURES\ULUS10336\. You must then enable texture replacements in PPSSPP to load the textures. If you want to contribute to testing, please activate texture dumping in your emulator and add any missing textures to missing-textures branch under the "missed textures" directory. I've also developed some simple tools for sorting through the textures. I am currently looking to improve them to make them more user friendly - any help would be appreciated on that front.
 
-Slow download from Github? <a href= "https://drive.google.com/file/d/190ivjkjDNKay31gyFE2jAAzBzoxBa4F7/view?usp=sharing>Download FF7CCUP on Google Drive.</a> (Link updated July 11, 2020).
+Slow download from Github? <a href= "https://drive.google.com/file/d/190ivjkjDNKay31gyFE2jAAzBzoxBa4F7/view?usp=sharing">Download FF7CCUP on Google Drive.</a> (Link updated July 11, 2020).
 Note: The Google Drive archive only contains the necessary files for the texture mod to work! if you wish to contribute please use this repository.
