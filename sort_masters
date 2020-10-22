@@ -1,8 +1,0 @@
-import os
-import glob
-import initialize_database as tdb
-import numpy as np
-
-imageList = np.asarray(tdb.getImageList("textures"))
-
-for i in 
