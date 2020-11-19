@@ -1,3 +1,13 @@
 
 __pycache__/evaluator.cpython-37.pyc
 __pycache__/initialize_database.cpython-37.pyc
+edits/
+masterdumps/
+New Folder/
+missed_textures/
+add_textures.ini
+eval_image.py
+evaluator.py
+initialize_database.py
+make_categories.py
+organize.py
