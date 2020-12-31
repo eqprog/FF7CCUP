@@ -12,7 +12,7 @@ import threading
 cat_filter = "Foliage"
 os.chdir("..")
 root = Tk()
-tdb.getNewTextures()
+#tdb.getNewTextures()
 root.title("FF7CCUP Evaluator")
 root.geometry("1918x1000+0+0")
 splash_img = ImageTk.PhotoImage(Image.open("evaluator.png"))
