@@ -5,6 +5,8 @@ All are welcome to participate so long as any submitted artwork is your own. *Do
 View current progress or leave feedback here: <a href="http://forums.qhimm.com/index.php?topic=20208.0">http://forums.qhimm.com/index.php?topic=20208.0</a>
 Or, participate in our <a href="https://discord.gg/HHMC2UBq4s">Discord Server.</a>
 
+## New! Download the latest release from the official site! <a href="http://eqprog.com/ff7ccup">Visit eqprog.com</a>
+
 # Setting up FF7CCUP
 
 ## Part One: Getting the Emulator set up & Finding texture path
